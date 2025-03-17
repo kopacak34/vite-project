@@ -22,6 +22,7 @@ const CountryFlagValidator: React.FC<CountryFlagValidatorProps> = ({ password })
         "ST", "SV", "SX", "SY", "SZ", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO",
         "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "UM", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VI",
         "VN", "VU", "WF", "WS", "YE", "YT", "ZA", "ZM", "ZW"
+
     ];
 
     const [selectedCountry, setSelectedCountry] = useState<string>("");
@@ -32,15 +33,19 @@ const CountryFlagValidator: React.FC<CountryFlagValidatorProps> = ({ password })
     useEffect(() => {
         const randomCountry = countries[Math.floor(Math.random() * countries.length)];
         setSelectedCountry(randomCountry);
-
-
-        const fetchFlag = async () => {
-            const response = await fetch(`https://flagcdn.com/w320/${randomCountry.toLowerCase()}.png`);
-            setFlagUrl(response.url);
-        };
-
-        fetchFlag();
     }, []);
+
+
+    useEffect(() => {
+        if (selectedCountry) {
+            const fetchFlag = async () => {
+                const response = await fetch(`https://flagcdn.com/w320/${selectedCountry.toLowerCase()}.png`);
+                setFlagUrl(response.url);
+            };
+
+            fetchFlag();
+        }
+    }, [selectedCountry]);
 
 
     useEffect(() => {
@@ -69,3 +74,4 @@ const CountryFlagValidator: React.FC<CountryFlagValidatorProps> = ({ password })
 };
 
 export default CountryFlagValidator;
+
