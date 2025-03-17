@@ -28,12 +28,12 @@ const CountryFlagValidator: React.FC<CountryFlagValidatorProps> = ({ password })
     const [flagUrl, setFlagUrl] = useState<string>("");
     const [isPasswordValid, setIsPasswordValid] = useState<boolean | null>(null);
 
-    // Vybere náhodně stát
+
     useEffect(() => {
         const randomCountry = countries[Math.floor(Math.random() * countries.length)];
         setSelectedCountry(randomCountry);
 
-        // Načte vlajku ze API
+
         const fetchFlag = async () => {
             const response = await fetch(`https://flagcdn.com/w320/${randomCountry.toLowerCase()}.png`);
             setFlagUrl(response.url);
@@ -42,7 +42,7 @@ const CountryFlagValidator: React.FC<CountryFlagValidatorProps> = ({ password })
         fetchFlag();
     }, []);
 
-    // Validace hesla
+
     useEffect(() => {
         if (password.toLowerCase().includes(selectedCountry.toLowerCase())) {
             setIsPasswordValid(true);
