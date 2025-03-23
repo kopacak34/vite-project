@@ -4,6 +4,8 @@ import PasswordStrength from "./PasswordStrength";
 import CharacterSequenceValidator from "./CharacterSequenceValidator";
 import PasswordTimeValidator from "./PasswordTimeValidator";
 import CountryFlagValidator from "./CountryFlagValidator";
+import './App.css';
+
 
 const App: React.FC = () => {
     const [password, setPassword] = useState<string>("");
